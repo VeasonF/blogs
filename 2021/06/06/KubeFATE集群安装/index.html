@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>使用KubeFATE安装联邦学习环境 | Veason</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="使用KubeFATE安装联邦学习环境KubeFATE 支持通过 Docker Compose 和 Kubernetes 进行 FATE 部署。我们建议使用 Docker Compose 安装快速开发和学习 FATE 集群，同时使用 Kubernetes 安装生产环境。   1、安装 docker 和 docker-composeUbuntu 安装 docker： 123456789$ sudo a">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用KubeFATE安装联邦学习环境">
+<meta property="og:url" content="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:site_name" content="Veason">
+<meta property="og:description" content="使用KubeFATE安装联邦学习环境KubeFATE 支持通过 Docker Compose 和 Kubernetes 进行 FATE 部署。我们建议使用 Docker Compose 安装快速开发和学习 FATE 集群，同时使用 Kubernetes 安装生产环境。   1、安装 docker 和 docker-composeUbuntu 安装 docker： 123456789$ sudo a">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/images/image-20210106151106217.png">
+<meta property="og:image" content="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/images/image-20210106151803567.png">
+<meta property="og:image" content="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/images/image-20210106161030997.png">
+<meta property="og:image" content="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/images/image-20210107095427279.png">
+<meta property="og:image" content="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/images/image-20210107095333408.png">
+<meta property="article:published_time" content="2021-06-06T07:55:44.288Z">
+<meta property="article:modified_time" content="2021-06-06T08:00:38.634Z">
+<meta property="article:author" content="VeasonF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/images/image-20210106151106217.png">
+  
+    <link rel="alternate" href="/blogs/atom.xml" title="Veason" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/blogs/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/blogs/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/blogs/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/blogs/" id="logo">Veason</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/blogs/" id="subtitle">blogs</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/blogs/">Home</a>
+        
+          <a class="main-nav-link" href="/blogs/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/blogs/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://veasonf.github.io/blogs"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-KubeFATE集群安装" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/" class="article-date">
+  <time class="dt-published" datetime="2021-06-06T07:55:44.288Z" itemprop="datePublished">2021-06-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      使用KubeFATE安装联邦学习环境
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="使用KubeFATE安装联邦学习环境"><a href="#使用KubeFATE安装联邦学习环境" class="headerlink" title="使用KubeFATE安装联邦学习环境"></a>使用KubeFATE安装联邦学习环境</h1><p>KubeFATE 支持通过 Docker Compose 和 Kubernetes 进行 FATE 部署。我们建议使用 Docker Compose 安装快速开发和学习 FATE 集群，同时使用 Kubernetes 安装生产环境。</p>
+<p><img src="./images/image-20210106151106217.png" alt="image-20210106151106217"></p>
+<p><img src="./images/image-20210106151803567.png" alt="image-20210106151803567"></p>
+<h2 id="1、安装-docker-和-docker-compose"><a href="#1、安装-docker-和-docker-compose" class="headerlink" title="1、安装 docker 和 docker-compose"></a>1、安装 docker 和 docker-compose</h2><p>Ubuntu 安装 docker：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install \    </span><br><span class="line">	apt-transport-https \    </span><br><span class="line">	ca-certificates \    curl \    </span><br><span class="line">	gnupg-agent \    </span><br><span class="line">	software-properties-common</span><br><span class="line">$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+
+<p>Centos</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo yum update</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo yum install -y yum-utils</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo yum install docker-ce</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看可安装的版本</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> yum list docker-ce --showduplicates | sort -r</span></span><br><span class="line"><span class="meta">#</span><span class="bash">安装指定版本</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> yum install docker-ce-&lt;VERSION STRING&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>安装指定版本docker-compose</p>
+<p>1.下载二进制文件（1.26.1表示版本，参考<a target="_blank" rel="noopener" href="https://github.com/docker/compose/releases%EF%BC%89">https://github.com/docker/compose/releases）</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">（官方）</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> curl -L <span class="string">&quot;https://github.com/docker/compose/releases/download/1.26.1/docker-compose-<span class="subst">$(uname -s)</span>-<span class="subst">$(uname -m)</span>&quot;</span> &gt; docker-compose</span></span><br><span class="line"><span class="meta">#</span><span class="bash">（国内）</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> curl -L <span class="string">&quot;https://get.daocloud.io/docker/compose/releases/download/1.26.1/docker-compose-<span class="subst">$(uname -s)</span>-<span class="subst">$(uname -m)</span>&quot;</span> &gt; /usr/<span class="built_in">local</span>/bin/docker-compose</span></span><br></pre></td></tr></table></figure>
+
+<p>2.将二进制文件移到用户目录下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo mv docker-compose /usr/<span class="built_in">local</span>/bin/</span></span><br></pre></td></tr></table></figure>
+
+<p>3.添加可执行权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span></span><br></pre></td></tr></table></figure>
+
+<p>4.验证</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker-compose version</span></span><br></pre></td></tr></table></figure>
+
+<p>配置Docker加速<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zHQQQQ/p/12218931.html">https://www.cnblogs.com/zHQQQQ/p/12218931.html</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://a83qduw5.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<p><img src="./images/image-20210106161030997.png" alt="image-20210106161030997"></p>
+<h2 id="2-SSH免密登录"><a href="#2-SSH免密登录" class="headerlink" title="2.SSH免密登录"></a>2.SSH免密登录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt update</span> </span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo apt install openssh-server</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> service ssh start</span></span><br></pre></td></tr></table></figure>
+
+<p>在机器1上执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh-keygen -t rsa</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.225.135</span></span><br></pre></td></tr></table></figure>
+
+<p>首先生成一对密钥，然后将公钥发送给机器2，就可以使用SSH免密登录了。</p>
+<h2 id="3-安装KubeFATE"><a href="#3-安装KubeFATE" class="headerlink" title="3.安装KubeFATE"></a>3.安装KubeFATE</h2><h3 id="在-KubeFATE-的-release-页面下载软件包-kubefate-docker-compose-tar-gz-并解压："><a href="#在-KubeFATE-的-release-页面下载软件包-kubefate-docker-compose-tar-gz-并解压：" class="headerlink" title="在 KubeFATE 的 release 页面下载软件包 kubefate-docker-compose.tar.gz 并解压："></a>在 KubeFATE 的 release 页面下载软件包 kubefate-docker-compose.tar.gz 并解压：</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://github.com/FederatedAI/KubeFATE/releases/download/v1.5.0/kubefate-docker-compose-v1.5.0.tar.gz</span><br><span class="line">$ tar xzf kubefate-docker-compose-v1.5.0.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="进入-docker-deploy-目录，修改-parties-conf-文件："><a href="#进入-docker-deploy-目录，修改-parties-conf-文件：" class="headerlink" title="进入 docker-deploy/ 目录，修改 parties.conf 文件："></a>进入 docker-deploy/ 目录，修改 parties.conf 文件：</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> docker-deploy</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> gedit parties.conf</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="parties-conf"><a href="#parties-conf" class="headerlink" title="parties.conf:"></a>parties.conf:</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">user=root            </span><br><span class="line">dir=/data/projects/fate</span><br><span class="line">partylist=(10000 9999)</span><br><span class="line">partyiplist=(192.168.225.134 192.168.225.135)</span><br><span class="line">servingiplist=(192.168.225.134 192.168.225.135)</span><br><span class="line">exchangeip=</span><br></pre></td></tr></table></figure>
+
+<h4 id="说明："><a href="#说明：" class="headerlink" title="说明："></a><strong>说明：</strong></h4><p>user：两台目标机器的用户 id，建议用户 root 或权限合适的用户。</p>
+<p>dir：目标机器上存放 docker-compose 文件的目录。</p>
+<p>partylist：FATE 集群的 party 列表。这里是两方，用数字表示。</p>
+<p>partyiplist：FATE 训练集群的 IP 地址，与 partylist 对应，例如上例 id 为 10000 的训练集群 ip 地址是 192.168.225.134。<strong>注意这里要替换成你准备的两台机器对应的 IP。</strong></p>
+<p>servingiplist：FATE 在线推理集群的 IP 地址，与 partylist 对应，可以和训练集群在一台机器上，也可以单独是一台机器。本文里训练集群和在线推理集群使用同一台机器。</p>
+<p>exchangeip：多于两方部署的时候推荐使用 exchange 模式。Exchange 是一个集中交换数据的节点，记录了所有 party 的 IP 地址，每个 party 只需要知道 exchange 节点的 IP 地址就可交换数据。本文是两方直连，所有不填写 exchange。</p>
+<h3 id="生成部署-FATE-的-docker-compose-文件"><a href="#生成部署-FATE-的-docker-compose-文件" class="headerlink" title="生成部署 FATE 的 docker-compose 文件"></a>生成部署 FATE 的 docker-compose 文件</h3><h4 id="生成安装包"><a href="#生成安装包" class="headerlink" title="生成安装包"></a>生成安装包</h4><p>根据上文的配置生成相对应的安装文件包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> bash generate_config.sh</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="部署-FATE"><a href="#部署-FATE" class="headerlink" title="部署 FATE"></a>部署 FATE</h3><h4 id="修改镜像源"><a href="#修改镜像源" class="headerlink" title="修改镜像源"></a>修改镜像源</h4><p>由于需要从Docker hub拉取镜像，可以使用国内镜像hub.c.163.com</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ gedit .env</span><br><span class="line">修改</span><br><span class="line">RegistryURI=hub.c.163.com</span><br></pre></td></tr></table></figure>
+
+<h4 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h4><p>部署双方的FATE和FATE-Serving。</p>
+<p>该命令会在两台机器上分别部署KubeFATE。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> bash docker_deploy.sh all</span></span><br></pre></td></tr></table></figure>
+
+<p>这一步需要拉取镜像，需要一段时间。完成后可以分别在两台机器上的对应**/data/projects/fate/confs-xxxxx目录下**执行</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> docker ps</span></span><br><span class="line">或者</span><br><span class="line"><span class="meta">$</span><span class="bash"> docker-compose ps</span></span><br></pre></td></tr></table></figure>
+
+<p>机器1</p>
+<p><img src="./images/image-20210107095427279.png"></p>
+<p>机器2</p>
+<p><img src="./images/image-20210107095333408.png" alt="image-20210107095333408"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose logs python</span><br></pre></td></tr></table></figure>
+
+<p>所有的组件状态都是Up并且python容器中出现”* Running on <a target="_blank" rel="noopener" href="http://x.x.x.x:9380/">http://x.x.x.x:9380/</a> (Press CTRL+C to quit)”的日志消息代表FATE已经成功启动。</p>
+<p>查看FATE Board: <a target="_blank" rel="noopener" href="http://192.168.225.134:8080/">http://192.168.225.134:8080</a></p>
+<p>使用jupyter notebook: <a target="_blank" rel="noopener" href="http://192.168.225.134:20000/">http://192.168.225.134:20000</a></p>
+<h4 id="端口映射"><a href="#端口映射" class="headerlink" title="端口映射"></a>端口映射</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">ssh -C -f -N -g -p 121 -L 9096:127.0.0.1:8081 username@172.***.***.16</span><br><span class="line">10022是目标主机登录端口</span><br><span class="line">4是目标主机</span><br><span class="line">16是用来映射的外网主机</span><br><span class="line">9096是外网主机用来映射的端口</span><br><span class="line">1521是目标主机被映射的端口</span><br><span class="line">ssh的三个强大的端口转发命令：</span><br><span class="line"></span><br><span class="line">转发到远端：ssh -C -f -N -g -L 本地端口:目标IP:目标端口 用户名@目标IP</span><br><span class="line">转发到本地：ssh -C -f -N -g –R 本地端口:目标IP:目标端口 用户名@目标IP</span><br><span class="line">ssh -C -f -N -g -D listen_port user@Tunnel_Host</span><br><span class="line">其中</span><br><span class="line">-C，是进行数据压缩。</span><br><span class="line">-f，是后台认证用户/密码，通常和-N连用，不用登录到远程主机。只有当提示用户名密码的时候才转向前台。</span><br><span class="line">-N，是不执行远端命令，在只是端口转发时这条命令很有用处。</span><br><span class="line">-g ，在-L/-R/-D参数中，是允许远端主机连接本地转发端口，如果不加这个参数，只允许本地主机建立连接。</span><br><span class="line">-L，则是将本地端口映射到远端主机端口。本地端口:目标IP:目标端口</span><br><span class="line">　　将本地机(客户机)的某个端口转发到远端指定机器的指定端口。</span><br><span class="line">　　工作原理： 本地机器上分配了一个 socket 侦听 port 端口, 一旦这个端口上有连接, 该连接就经过安全通道转发出去, 同时远程主机和 host 的 hostport 端口建立连接. 可以在配置文件中指定端口的转发。</span><br><span class="line">　只有 root 才能转发特权端口。IPv6 地址用另一种格式说明: port/host/hostport</span><br><span class="line">-R，表明是将远端主机端口映射到本地端口。本地端口:目标IP:目标端口</span><br><span class="line">　　将远程主机(服务器)的某个端口转发到本地端指定机器的指定端口</span><br><span class="line">　　 工作原理： 远程主机上分配了一个 socket 侦听 port 端口, 一旦这个端口上有连接, 该连接就经过安全通道转向出去, 同时本地主机和 host 的 hostport 端口建立连接. 可以在配置文件中指定端口的转发.。</span><br><span class="line">　　只有用 root 登录远程主机才能转发特权端口.。IPv6 地址用另一种格式说明: port/host/hostport</span><br><span class="line">-p ：被登录的ssd服务器的sshd服务端口。</span><br><span class="line">-D port</span><br><span class="line">　　指定一个本地机器 “动态的&#x27;’ 应用程序端口转发.。</span><br><span class="line">　　工作原理： 本地机器上分配了一个 socket 侦听 port 端口, 一旦这个端口上有了连接, 该连接就经过安全通道转发出去, 根据应用程序的协议可以判断出远程主机将和哪里连接.。目前支持 SOCKS4 协议, 将充当 SOCKS4 服务器。</span><br><span class="line">　　 只有 root 才能转发特权端口，可以在配置文件中指定动态端口的转发。</span><br><span class="line">应用举例</span><br><span class="line">1. 将发往本机的80端口访问转发到192.168.1.1的8080端口</span><br><span class="line">ssh -C -f -N -g -L 80:192.168.1.1:8080  user@192.168.1.1</span><br><span class="line">2. 将发往192.168.1.1的8080访问转发到本机的80端口</span><br><span class="line">ssh -C -f -N -g -R 80:192.168.1.1:8080 user@192.168.1.1</span><br><span class="line">（user为主机192.168.1.1上的用户）</span><br><span class="line">-N - 不使用Shell窗口，纯做转发的时候用，如果你在映射完成后继续在服务器上输入命令，去掉这个参数即可</span><br><span class="line">例子A:我们想远程管理服务器上的MySQL,那么使用下面命令</span><br><span class="line">ssh -L 3306:127.0.0.1:3306   user@emlog-vps    -N  </span><br><span class="line">运行这个命令之后，ssh将会自动将服务器的3306映射到本机的3306端口，我们就可以使用任意MySQL客户端连接 localhost:3306即可访问到服务器上的MySQL了。</span><br><span class="line">例子B:一次同时映射多个端口</span><br><span class="line">ssh -L 8888:www.host.com:80 -L 110:mail.host.com:110 -L    25:mail.host.com:25 user@host -N  </span><br><span class="line">命令将自动把服务器的80，110，25端口分别映射到本机的8888，110和25端口</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/" data-id="ckpkw88tk00018ont0m0r5506" data-title="使用KubeFATE安装联邦学习环境" class="article-share-link">Teilen</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blogs/2021/06/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%9D%82%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          机器学习杂记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blogs/2021/06/06/fate%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">FATE问题记录</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blogs/archives/2021/06/">六月 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blogs/2021/06/06/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%9D%82%E8%AE%B0/">机器学习杂记</a>
+          </li>
+        
+          <li>
+            <a href="/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/">使用KubeFATE安装联邦学习环境</a>
+          </li>
+        
+          <li>
+            <a href="/blogs/2021/06/06/fate%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/">FATE问题记录</a>
+          </li>
+        
+          <li>
+            <a href="/blogs/2021/06/06/FATE%E4%BD%BF%E7%94%A8/">FATE使用</a>
+          </li>
+        
+          <li>
+            <a href="/blogs/2021/06/06/docker%E4%BD%BF%E7%94%A8/">Docker使用</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 VeasonF<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/blogs/" class="mobile-nav-link">Home</a>
+  
+    <a href="/blogs/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/blogs/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/blogs/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/blogs/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
