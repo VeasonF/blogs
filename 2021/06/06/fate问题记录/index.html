@@ -13,14 +13,14 @@
 <meta property="og:site_name" content="Veason">
 <meta property="og:description" content="utf-8字体问题 1yum remove kde-l10n-Chinese  然后 1localedef -c -f UTF-8 -i zh_CN zh_CN.utf8  更改配置文件local. conf然后设置LANG并刷新。也可通过设置改变系统编码 12export LC_ALL&#x3D;zh_CN.UTF8export LANG&#x3D;zh_CN.UTF8  ，修改用户的~&#x2F;.bash_profile">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="c:%5CUsers%5Cw1483%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210301094908733.png">
-<meta property="og:image" content="https://veasonf.github.io/blogs/2021/06/06/fate%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/image-20210203000542045.png">
-<meta property="og:image" content="https://veasonf.github.io/blogs/2021/06/06/fate%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/image-20210301104114920.png">
+<meta property="og:image" content="https://veasonf.github.io/blogs/2021/06/06/fate%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/images/image-20210301094908733.png">
+<meta property="og:image" content="https://veasonf.github.io/blogs/2021/06/06/fate%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/images/image-20210203000542045.png">
+<meta property="og:image" content="https://veasonf.github.io/blogs/2021/06/06/fate%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/images/image-20210301104114920.png">
 <meta property="article:published_time" content="2021-06-06T07:55:29.452Z">
-<meta property="article:modified_time" content="2021-06-06T08:01:43.484Z">
+<meta property="article:modified_time" content="2021-06-06T08:14:02.550Z">
 <meta property="article:author" content="VeasonF">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:%5CUsers%5Cw1483%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210301094908733.png">
+<meta name="twitter:image" content="https://veasonf.github.io/blogs/2021/06/06/fate%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/images/image-20210301094908733.png">
   
     <link rel="alternate" href="/blogs/atom.xml" title="Veason" type="application/atom+xml">
   
@@ -103,7 +103,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h3 id="utf-8字体问题"><a href="#utf-8字体问题" class="headerlink" title="utf-8字体问题"></a>utf-8字体问题</h3><p><img src="C:%5CUsers%5Cw1483%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210301094908733.png" alt="image-20210301094908733"></p>
+        <h3 id="utf-8字体问题"><a href="#utf-8字体问题" class="headerlink" title="utf-8字体问题"></a>utf-8字体问题</h3><p><img src="./images/image-20210301094908733.png"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum remove kde-l10n-Chinese</span><br></pre></td></tr></table></figure>
 
 <p>然后</p>
@@ -113,12 +113,12 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export LC_ALL=zh_CN.UTF8</span><br><span class="line">export LANG=zh_CN.UTF8</span><br></pre></td></tr></table></figure>
 
 <p>，修改用户的~/.bash_profile，也可修改系统层设置/etc/profile，增加这两个设置即可。</p>
-<p><img src="image-20210203000542045.png" alt="image-20210203000542045"></p>
+<p><img src="./images/image-20210203000542045.png"></p>
 <p><a target="_blank" rel="noopener" href="https://click.palletsprojects.com/en/7.x/python3/">https://click.palletsprojects.com/en/7.x/python3/</a></p>
 <p>解决方案</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/bioconda/bioconda-recipes/issues/14086">https://github.com/bioconda/bioconda-recipes/issues/14086</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/bioconda/bioconda-utils/issues/70">https://github.com/bioconda/bioconda-utils/issues/70</a></p>
-<h3 id="fate-client安装问题"><a href="#fate-client安装问题" class="headerlink" title="fate-client安装问题"></a>fate-client安装问题</h3><p>​    <img src="image-20210301104114920.png" alt="image-20210301104114920"></p>
+<h3 id="fate-client安装问题"><a href="#fate-client安装问题" class="headerlink" title="fate-client安装问题"></a>fate-client安装问题</h3><p>​    <img src="./images/image-20210301104114920.png"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install fate-client --no-cache-dir</span><br></pre></td></tr></table></figure>
 
 <h3 id="重启Mysql服务掉线"><a href="#重启Mysql服务掉线" class="headerlink" title="重启Mysql服务掉线"></a>重启Mysql服务掉线</h3><p>删除数据卷，重启</p>
@@ -127,7 +127,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://veasonf.github.io/blogs/2021/06/06/fate%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="ckpkw88tq00038ont5m484i1g" data-title="FATE问题记录" class="article-share-link">Teilen</a>
+      <a data-url="https://veasonf.github.io/blogs/2021/06/06/fate%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="ckpkwyl560005wontcqg327b6" data-title="FATE问题记录" class="article-share-link">Teilen</a>
       
       
       

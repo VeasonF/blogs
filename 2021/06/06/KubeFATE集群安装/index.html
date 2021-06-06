@@ -6,12 +6,12 @@
   
   <title>使用KubeFATE安装联邦学习环境 | Veason</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="使用KubeFATE安装联邦学习环境KubeFATE 支持通过 Docker Compose 和 Kubernetes 进行 FATE 部署。我们建议使用 Docker Compose 安装快速开发和学习 FATE 集群，同时使用 Kubernetes 安装生产环境。   1、安装 docker 和 docker-composeUbuntu 安装 docker： 123456789$ sudo a">
+  <meta name="description" content="KubeFATE 支持通过 Docker Compose 和 Kubernetes 进行 FATE 部署。我们建议使用 Docker Compose 安装快速开发和学习 FATE 集群，同时使用 Kubernetes 安装生产环境。   1、安装 docker 和 docker-composeUbuntu 安装 docker： 123456789$ sudo apt-get update$ sud">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用KubeFATE安装联邦学习环境">
 <meta property="og:url" content="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/index.html">
 <meta property="og:site_name" content="Veason">
-<meta property="og:description" content="使用KubeFATE安装联邦学习环境KubeFATE 支持通过 Docker Compose 和 Kubernetes 进行 FATE 部署。我们建议使用 Docker Compose 安装快速开发和学习 FATE 集群，同时使用 Kubernetes 安装生产环境。   1、安装 docker 和 docker-composeUbuntu 安装 docker： 123456789$ sudo a">
+<meta property="og:description" content="KubeFATE 支持通过 Docker Compose 和 Kubernetes 进行 FATE 部署。我们建议使用 Docker Compose 安装快速开发和学习 FATE 集群，同时使用 Kubernetes 安装生产环境。   1、安装 docker 和 docker-composeUbuntu 安装 docker： 123456789$ sudo apt-get update$ sud">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/images/image-20210106151106217.png">
 <meta property="og:image" content="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/images/image-20210106151803567.png">
@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/images/image-20210107095427279.png">
 <meta property="og:image" content="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/images/image-20210107095333408.png">
 <meta property="article:published_time" content="2021-06-06T07:55:44.288Z">
-<meta property="article:modified_time" content="2021-06-06T08:00:38.634Z">
+<meta property="article:modified_time" content="2021-06-06T08:17:52.858Z">
 <meta property="article:author" content="VeasonF">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/images/image-20210106151106217.png">
@@ -105,9 +105,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="使用KubeFATE安装联邦学习环境"><a href="#使用KubeFATE安装联邦学习环境" class="headerlink" title="使用KubeFATE安装联邦学习环境"></a>使用KubeFATE安装联邦学习环境</h1><p>KubeFATE 支持通过 Docker Compose 和 Kubernetes 进行 FATE 部署。我们建议使用 Docker Compose 安装快速开发和学习 FATE 集群，同时使用 Kubernetes 安装生产环境。</p>
-<p><img src="./images/image-20210106151106217.png" alt="image-20210106151106217"></p>
-<p><img src="./images/image-20210106151803567.png" alt="image-20210106151803567"></p>
+        <p>KubeFATE 支持通过 Docker Compose 和 Kubernetes 进行 FATE 部署。我们建议使用 Docker Compose 安装快速开发和学习 FATE 集群，同时使用 Kubernetes 安装生产环境。</p>
+<p><img src="./images/image-20210106151106217.png"></p>
+<p><img src="./images/image-20210106151803567.png"></p>
 <h2 id="1、安装-docker-和-docker-compose"><a href="#1、安装-docker-和-docker-compose" class="headerlink" title="1、安装 docker 和 docker-compose"></a>1、安装 docker 和 docker-compose</h2><p>Ubuntu 安装 docker：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install \    </span><br><span class="line">	apt-transport-https \    </span><br><span class="line">	ca-certificates \    curl \    </span><br><span class="line">	gnupg-agent \    </span><br><span class="line">	software-properties-common</span><br><span class="line">$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
 
@@ -130,7 +130,7 @@
 <p>配置Docker加速<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zHQQQQ/p/12218931.html">https://www.cnblogs.com/zHQQQQ/p/12218931.html</a></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://a83qduw5.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure>
 
-<p><img src="./images/image-20210106161030997.png" alt="image-20210106161030997"></p>
+<p><img src="./images/image-20210106161030997.png"></p>
 <h2 id="2-SSH免密登录"><a href="#2-SSH免密登录" class="headerlink" title="2.SSH免密登录"></a>2.SSH免密登录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt update</span> </span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo apt install openssh-server</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> service ssh start</span></span><br></pre></td></tr></table></figure>
 
 <p>在机器1上执行</p>
@@ -165,7 +165,7 @@
 <p>机器1</p>
 <p><img src="./images/image-20210107095427279.png"></p>
 <p>机器2</p>
-<p><img src="./images/image-20210107095333408.png" alt="image-20210107095333408"></p>
+<p><img src="./images/image-20210107095333408.png"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose logs python</span><br></pre></td></tr></table></figure>
 
 <p>所有的组件状态都是Up并且python容器中出现”* Running on <a target="_blank" rel="noopener" href="http://x.x.x.x:9380/">http://x.x.x.x:9380/</a> (Press CTRL+C to quit)”的日志消息代表FATE已经成功启动。</p>
@@ -179,7 +179,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/" data-id="ckpkw88tk00018ont0m0r5506" data-title="使用KubeFATE安装联邦学习环境" class="article-share-link">Teilen</a>
+      <a data-url="https://veasonf.github.io/blogs/2021/06/06/KubeFATE%E9%9B%86%E7%BE%A4%E5%AE%89%E8%A3%85/" data-id="ckpkwyl510001wontaf8j5dsp" data-title="使用KubeFATE安装联邦学习环境" class="article-share-link">Teilen</a>
       
       
       
